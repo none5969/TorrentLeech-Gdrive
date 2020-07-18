@@ -14,8 +14,9 @@ A Telegram Torrent (and youtube-dl) Leecher based on [Pyrogram](https://github.c
     ✓ Custom file name
     ✓ Custom commands
     ✓ Get total size of your working cloud directory
-    ✓ Now you can also upload files downloaded from /ytdl command to gdrive using `/ytdl gdrive` command.
-    ✓ 
+    ✓ You can also upload files downloaded from /ytdl command to gdrive using `/ytdl gdrive` command.
+    ✓ You can also deploy this on your VPS
+    ✓
 
 ### Credit goes to SpEcHiDe for his Publicleech repo.
 
@@ -31,7 +32,7 @@ Simply clone the repository and run the main file:
 ```sh
 git clone https://github.com/SpEcHiDe/PublicLeech.git
 cd PublicLeech
-virtualenv -p /usr/bin/python3 venv
+python3 -m venv venv
 . ./venv/bin/activate
 pip install -r requirements.txt
 # <Create config.py appropriately>
@@ -46,7 +47,7 @@ class Config(Config):
   TG_BOT_TOKEN = ""
   APP_ID = 6
   API_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
-  AUTH_CHANNEL = -1001234567890
+  AUTH_CHANNEL = [-1001234567890]
 ```
 
 ### Variable Explanations
@@ -193,6 +194,42 @@ You have to pass link as
 
 the file will be uploaded as `new.txt`.
 
+## Process to run this BOT on VPS
+
+- Clone this repo:
+```
+git clone https://github.com/gautamajay52/TorrentLeech-Gdrive 
+cd TorrentLeech-Gdrive
+```
+
+- Install requirements
+For Debian based distros
+```
+sudo apt install python3
+```
+Install Docker by following the [official docker docs](https://docs.docker.com/engine/install/debian/)
+
+## Setting up config file
+```
+cp tobrot/g_config.py tobrot/config.py
+```
+Follow and fill all the required variables that were already filled in the sample config file, but with your details. And you can also fill all other variables according to your need and all those are explained above already.
+
+## Deploying
+
+- Start docker daemon (skip if already running):
+```
+sudo dockerd
+```
+- Build Docker image:
+```
+sudo docker build . -t TorrentLeech-Gdrive
+```
+- Run the image:
+```
+sudo docker run TorrentLeech-Gdrive
+```
+
 
 ## How to Use?
 
@@ -201,7 +238,7 @@ the file will be uploaded as `new.txt`.
 
 ## Credits, and Thanks to
 * [GautamKumar(me)](https://github.com/gautamajay52/TorrentLeech-Gdrive) 😬
-* [Publicleech](https://github.com/SpEcHiDe/PublicLeech) for his wonderful code😚
+* [SpEcHiDe](https://github.com/SpEcHiDe/PublicLeech) for his wonderful code😚
 * [Rclone Team](https://rclone.org) for theirs awesome tool☁️
 * [Dan Tès](https://telegram.dog/haskell) for his [Pyrogram Library](https://github.com/pyrogram/pyrogram)
 * [Robots](https://telegram.dog/Robots) for their [@UploadBot](https://telegram.dog/UploadBot)
